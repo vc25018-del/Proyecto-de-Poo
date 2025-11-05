@@ -1,0 +1,60 @@
+
+package proyecpoo;
+
+public class Propiedades {
+    // Atributos de la clase (usando lowerCamelCase)
+    private String codigo;
+    private String tipo; // casa, apartamento, local
+    private String direccion;
+    private double precio;
+    private String estado; // disponible, vendida, alquilada
+    private String idPropietario; // Relación con Propietario
+
+    // Constructor vacío
+    public Propiedades() {
+    }
+
+    // Constructor con todos los atributos
+    public Propiedades(String codigo, String tipo, String direccion, double precio, String estado, String idPropietario) {
+        this.codigo = codigo;
+        this.tipo = tipo;
+        this.direccion = direccion;
+        this.precio = precio;
+        this.estado = estado;
+        this.idPropietario = idPropietario;
+    }
+
+    // Métodos Getters y Setters (Encapsulamiento)
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
+    // ... otros Getters y Setters para tipo, direccion, precio, estado, idPropietario
+    
+    public double getPrecio() {
+        return precio;
+    }
+
+    // Validación de precios positivos directamente en el Setter
+    public void setPrecio(double precio) {
+        if (precio > 0) {
+            this.precio = precio;
+        } else {
+            // Manejo de error o excepción si el precio es negativo o cero
+            throw new IllegalArgumentException("El precio debe ser un valor positivo.");
+        }
+    }
+
+    // Método toString para una representación en cadena del objeto
+    @Override
+    public String toString() {
+        return "Propiedad{" + "codigo=" + codigo + ", tipo=" + tipo + ", direccion=" + direccion + ", precio=" + precio + '}';
+    }
+    
+    
+    
+}
