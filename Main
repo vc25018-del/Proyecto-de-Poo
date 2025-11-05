@@ -59,9 +59,7 @@ public static void main(String[] args) {
         }
     }
     
-    /**
-     * Muestra la ventana de Autenticación de Usuario (Login).
-     */
+    // login
     private static void mostrarLogin() {
         // NOTA: Se asume que tienes una clase llamada LoginFrame
         // LoginFrame loginFrame = new LoginFrame();
