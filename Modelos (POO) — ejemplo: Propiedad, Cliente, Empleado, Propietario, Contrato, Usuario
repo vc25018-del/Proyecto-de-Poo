@@ -1,0 +1,15 @@
+// package com.inmobiliaria.model;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public class Propiedad {
+    private String codigo;             // UpperCamelCase clase, lowerCamelCase variables
+    private String tipo;               // "casa", "apartamento", "local"
+    private String direccion;
+    private double precio;             // validar > 0
+    private String estado;             // "disponible","vendida","alquilada"
+    private String propietarioId;      // id o codigo del propietario
+
+    // constructor, getters, setters
+}
