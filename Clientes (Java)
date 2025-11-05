@@ -3,7 +3,7 @@ package proyecpoo;
 
 public class Clientes {
     
-    private String idCliente; // Puede ser DNI, cédula, etc.
+    private String idCliente; // Puede ser NIT, DUI, etc.
     private String nombre;
     private String apellido;
     private String telefono;
