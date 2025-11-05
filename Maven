@@ -1,0 +1,29 @@
+inmobiliaria/
+├─ pom.xml
+├─ src/main/java/com/inmobiliaria/
+│  ├─ app/
+│  │  ├─ Main.java
+│  ├─ config/
+│  │  └─ MongoDBConnection.java
+│  ├─ model/
+│  │  ├─ Propiedad.java
+│  │  ├─ Cliente.java
+│  │  ├─ Empleado.java
+│  │  ├─ Propietario.java
+│  │  ├─ Contrato.java
+│  │  └─ Usuario.java
+│  ├─ dao/
+│  │  ├─ PropiedadDAO.java
+│  │  ├─ ClienteDAO.java
+│  │  ├─ EmpleadoDAO.java
+│  │  ├─ PropietarioDAO.java
+│  │  └─ ContratoDAO.java
+│  ├─ ui/
+│  │  ├─ LoginFrame.java
+│  │  ├─ MainFrame.java
+│  │  ├─ panel/
+│  │  │  ├─ PropiedadPanel.java
+│  │  │  └─ ClientePanel.java
+│  └─ util/
+│     └─ Validator.java
+└─ resources/
