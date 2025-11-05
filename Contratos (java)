@@ -1,0 +1,22 @@
+
+
+import java.util.Date;
+public class Contratos {
+    private String idContrato;
+    private String idCliente; // Relación con Cliente
+    private String codigoPropiedad; // Relación con Propiedad
+    private String idEmpleado; // Relación con Empleado (agente responsable)
+    private String tipoOperacion; // venta o alquiler
+    private Date fechaInicio;
+    private Date fechaFin; // solo para alquiler
+    private double montoTotal; // Precio de venta o monto de alquiler mensual
+    private double comisionAgente;
+
+    // Constructor(es), Getters y Setters...
+
+    // Lógica de Negocio: Calcular Comisión
+    public void calcularComision(double porcentaje) {
+        // Ejemplo de cálculo de comisión simple
+        this.comisionAgente = this.montoTotal * porcentaje;
+    }
+}
