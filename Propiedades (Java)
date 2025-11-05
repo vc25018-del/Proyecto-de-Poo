@@ -2,7 +2,7 @@
 package proyecpoo;
 
 public class Propiedades {
-    // Atributos de la clase (usando lowerCamelCase)
+    // Atributos de la clase
     private String codigo;
     private String tipo; // casa, apartamento, local
     private String direccion;
