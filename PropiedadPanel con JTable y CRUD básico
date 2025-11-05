@@ -1,0 +1,97 @@
+// package com.inmobiliaria.ui.panel;
+
+import com.inmobiliaria.dao.PropiedadDAO;
+import com.inmobiliaria.model.Propiedad;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.util.List;
+
+public class PropiedadPanel extends JPanel {
+    private PropiedadDAO propiedadDAO = new PropiedadDAO();
+    private JTable table;
+    private DefaultTableModel tableModel;
+
+    public PropiedadPanel() {
+        setLayout(new BorderLayout());
+        initComponents();
+        loadData();
+    }
+
+    private void initComponents() {
+        tableModel = new DefaultTableModel(new Object[]{"Código","Tipo","Dirección","Precio","Estado","Propietario"}, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        table = new JTable(tableModel);
+        add(new JScrollPane(table), BorderLayout.CENTER);
+
+        JPanel controls = new JPanel();
+        JButton btnNuevo = new JButton("Nuevo");
+        JButton btnEditar = new JButton("Editar");
+        JButton btnEliminar = new JButton("Eliminar");
+        JButton btnBuscar = new JButton("Buscar");
+
+        controls.add(btnNuevo);
+        controls.add(btnEditar);
+        controls.add(btnEliminar);
+        controls.add(btnBuscar);
+        add(controls, BorderLayout.SOUTH);
+
+        btnNuevo.addActionListener(e -> abrirDialogoCrear());
+        btnEditar.addActionListener(e -> abrirDialogoEditar());
+        btnEliminar.addActionListener(e -> eliminarSeleccion());
+        btnBuscar.addActionListener(e -> buscarPorCodigo());
+    }
+
+    private void loadData() {
+        tableModel.setRowCount(0);
+        List<Propiedad> lista = propiedadDAO.obtenerTodas();
+        for (Propiedad p : lista) {
+            tableModel.addRow(new Object[]{p.getCodigo(), p.getTipo(), p.getDireccion(), p.getPrecio(), p.getEstado(), p.getPropietarioId()});
+        }
+    }
+
+    private void abrirDialogoCrear() {
+        // Implementar un JDialog con JTextFields, JComboBox para tipo/estado, JSpinner para precio
+        // Validar campos con Validator antes de crear
+        // Al crear -> propiedadDAO.insertar(p) -> loadData()
+        JOptionPane.showMessageDialog(this, "Formulario crear - implementar");
+    }
+
+    private void abrirDialogoEditar() {
+        int row = table.getSelectedRow();
+        if (row == -1) { JOptionPane.showMessageDialog(this, "Seleccione una fila"); return;}
+        String codigo = (String)tableModel.getValueAt(row, 0);
+        Propiedad p = propiedadDAO.buscarPorCodigo(codigo);
+        if (p == null) { JOptionPane.showMessageDialog(this, "Propiedad no encontrada"); return;}
+        // mostrar dialogo con datos y permitir editar -> propiedadDAO.actualizar(p)
+        JOptionPane.showMessageDialog(this, "Formulario editar - implementar");
+    }
+
+    private void eliminarSeleccion() {
+        int row = table.getSelectedRow();
+        if (row == -1) { JOptionPane.showMessageDialog(this, "Seleccione una fila"); return;}
+        String codigo = (String)tableModel.getValueAt(row, 0);
+        int resp = JOptionPane.showConfirmDialog(this, "¿Eliminar propiedad " + codigo + "?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (resp == JOptionPane.YES_OPTION) {
+            propiedadDAO.eliminar(codigo);
+            loadData();
+        }
+    }
+
+    private void buscarPorCodigo() {
+        String codigo = JOptionPane.showInputDialog(this, "Ingrese código de propiedad:");
+        if (codigo == null || codigo.trim().isEmpty()) return;
+        Propiedad p = propiedadDAO.buscarPorCodigo(codigo);
+        if (p == null) {
+            JOptionPane.showMessageDialog(this, "No encontrada");
+        } else {
+            // mostrar detalles en dialogo
+            JOptionPane.showMessageDialog(this, "Código: " + p.getCodigo() + "\nDirección: " + p.getDireccion());
+        }
+    }
+}
