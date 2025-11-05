@@ -1,0 +1,23 @@
+
+package proyecpoo;
+
+public class Clientes {
+    
+    private String idCliente; // Puede ser DNI, cédula, etc.
+    private String nombre;
+    private String apellido;
+    private String telefono;
+    private String correo;
+    private String tipo; // comprador o arrendatario
+
+    // Constructor(es), Getters y Setters...
+    
+    // Un setter que podría incluir una validación simple de formato de correo
+    public void setCorreo(String correo) {
+        if (correo != null && correo.contains("@") && correo.contains(".")) {
+            this.correo = correo;
+        } else {
+            throw new IllegalArgumentException("Formato de correo inválido.");
+        }
+    }
+}
