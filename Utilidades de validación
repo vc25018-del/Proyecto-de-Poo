@@ -1,0 +1,27 @@
+// package com.inmobiliaria.util;
+
+import java.util.regex.Pattern;
+
+public class Validator {
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(
+        "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    private static final Pattern PHONE_PATTERN = Pattern.compile("^\\+?[0-9]{7,15}$");
+
+    public static boolean isEmailValid(String email) {
+        if (email == null) return false;
+        return EMAIL_PATTERN.matcher(email).matches();
+    }
+
+    public static boolean isPhoneValid(String phone) {
+        if (phone == null) return false;
+        return PHONE_PATTERN.matcher(phone).matches();
+    }
+
+    public static boolean isPositive(double value) {
+        return value > 0;
+    }
+
+    public static boolean isNotEmpty(String s) {
+        return s != null && !s.trim().isEmpty();
+    }
+}
