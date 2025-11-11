@@ -1,0 +1,27 @@
+inmobiliaria/
+ ├─ pom.xml
+ └─ src/
+    ├─ main/
+    │  ├─ java/
+    │  │  └─ com/inmobiliaria/
+    │  │     ├─ App.java
+    │  │     ├─ config/
+    │  │     │  └─ ConexionMongo.java
+    │  │     ├─ model/
+    │  │     │  ├─ Propiedad.java
+    │  │     │  ├─ Cliente.java
+    │  │     │  ├─ Empleado.java
+    │  │     │  ├─ Contrato.java
+    │  │     │  ├─ Propietario.java
+    │  │     │  └─ Usuario.java
+    │  │     ├─ dao/
+    │  │     │  ├─ PropiedadDAO.java
+    │  │     │  └─ (otros DAO similares)
+    │  │     └─ ui/
+    │  │        ├─ Autenticacion.java
+    │  │        ├─ MainMenu.java
+    │  │        ├─ GestionDePropiedades.java
+    │  │        └─ (otras pantallas: GestionDeClientes, GestionDeEmpleados, GestionDeContratos, GestionDePropietarios)
+    │  └─ resources/
+    │     └─ application.properties (opcional)
+    └─ test/
