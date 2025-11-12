@@ -1,0 +1,71 @@
+package Views;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class FrmMenu extends JFrame {
+
+    public FrmMenu() {
+        // Configuración general del formulario
+        setTitle("Inmobiliaria Universitaria");
+        setSize(700, 500);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLayout(null);
+
+        // Colores base
+        Color fondo = new Color(20, 20, 30);
+        Color colorBoton = new Color(45, 95, 255);
+        Color colorTexto = Color.WHITE;
+
+        getContentPane().setBackground(fondo);
+
+        // Etiqueta título
+        JLabel lblTitulo = new JLabel("Menú Principal", SwingConstants.CENTER);
+        lblTitulo.setForeground(Color.WHITE);
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 26));
+        lblTitulo.setBounds(0, 40, getWidth(), 40);
+        add(lblTitulo);
+
+        // Panel contenedor de botones
+        JPanel panelBotones = new JPanel();
+        panelBotones.setLayout(new GridLayout(3, 2, 30, 30));
+        panelBotones.setBackground(fondo);
+        panelBotones.setBounds(130, 120, 440, 250);
+
+        // Crear botones
+        JButton btnPropiedades = new JButton("Propiedades");
+        JButton btnClientes = new JButton("Clientes");
+        JButton btnEmpleados = new JButton("Empleados");
+        JButton btnContratos = new JButton("Contratos");
+        JButton btnPropietarios = new JButton("Propietarios");
+        JButton btnCerrarSesion = new JButton("Cerrar sesión");
+
+        // Estilo uniforme
+        JButton[] botones = {
+            btnPropiedades, btnClientes, btnEmpleados,
+            btnContratos, btnPropietarios, btnCerrarSesion
+        };
+
+        for (JButton boton : botones) {
+            boton.setFocusPainted(false);
+            boton.setFont(new Font("Segoe UI", Font.BOLD, 16));
+            boton.setBackground(colorBoton);
+            boton.setForeground(colorTexto);
+            boton.setBorderPainted(false);
+            boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            boton.setPreferredSize(new Dimension(150, 50));
+            panelBotones.add(boton);
+        }
+
+        add(panelBotones);
+
+        // Mostrar ventana
+        setVisible(true);
+    }
+
+    // Método principal para probar el diseño directamente
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new FrmMenu());
+    }
+}
