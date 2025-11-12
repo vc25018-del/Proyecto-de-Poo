@@ -1,0 +1,155 @@
+package Views;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+
+public class FrmClientes extends JFrame {
+
+    public FrmClientes() {
+        // Configuración general
+        setTitle("Inmobiliaria Universitaria");
+        setSize(950, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLayout(null);
+
+        // Colores base
+        Color fondo = new Color(15, 15, 25);
+        Color panelIzquierdo = new Color(25, 25, 40);
+        Color texto = Color.WHITE;
+        Color botonAzul = new Color(45, 95, 255);
+        Color botonVerde = new Color(46, 204, 113);
+        Color botonRojo = new Color(231, 76, 60);
+
+        getContentPane().setBackground(fondo);
+
+        // Panel izquierdo
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        panel.setBackground(panelIzquierdo);
+        panel.setBounds(20, 40, 430, 480);
+        add(panel);
+
+        // Etiquetas y campos
+        JLabel lblId = new JLabel("ID:");
+        JLabel lblNombre = new JLabel("Nombre:");
+        JLabel lblApellido = new JLabel("Apellido:");
+        JLabel lblTelefono = new JLabel("Teléfono:");
+        JLabel lblCorreo = new JLabel("Correo:");
+        JLabel lblTipo = new JLabel("Tipo:");
+
+        JTextField txtId = new JTextField();
+        JTextField txtNombre = new JTextField();
+        JTextField txtApellido = new JTextField();
+        JTextField txtTelefono = new JTextField();
+        JTextField txtCorreo = new JTextField();
+        JComboBox<String> cbTipo = new JComboBox<>(new String[]{"Comprador", "Arrendatario"});
+
+        // Estilo del JComboBox
+        cbTipo.setBackground(new Color(35, 35, 50));
+        cbTipo.setForeground(texto);
+        cbTipo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        cbTipo.setFocusable(false);
+        cbTipo.setBorder(BorderFactory.createEmptyBorder(2, 6, 2, 6));
+        cbTipo.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index,
+                                                          boolean isSelected, boolean cellHasFocus) {
+                JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                label.setBackground(isSelected ? new Color(45, 95, 255) : new Color(35, 35, 50));
+                label.setForeground(Color.WHITE);
+                label.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+                return label;
+            }
+        });
+
+        JLabel[] etiquetas = {lblId, lblNombre, lblApellido, lblTelefono, lblCorreo, lblTipo};
+        JComponent[] campos = {txtId, txtNombre, txtApellido, txtTelefono, txtCorreo, cbTipo};
+
+        int y = 30;
+        for (int i = 0; i < etiquetas.length; i++) {
+            etiquetas[i].setForeground(texto);
+            etiquetas[i].setFont(new Font("Segoe UI", Font.PLAIN, 15));
+            etiquetas[i].setBounds(30, y, 160, 25);
+            panel.add(etiquetas[i]);
+
+            campos[i].setBounds(190, y, 200, 25);
+            campos[i].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            if (campos[i] instanceof JTextField)
+                ((JTextField) campos[i]).setBackground(new Color(35, 35, 50));
+            campos[i].setForeground(texto);
+            panel.add(campos[i]);
+
+            y += 45;
+        }
+
+        // Botones (movidos hacia la izquierda)
+        JButton btnAgregar = new JButton("Agregar");
+        JButton btnEditar = new JButton("Editar");
+        JButton btnEliminar = new JButton("Eliminar");
+
+        JButton[] botones = {btnAgregar, btnEditar, btnEliminar};
+        Color[] colores = {botonAzul, botonVerde, botonRojo};
+        int x = 40;
+        for (int i = 0; i < botones.length; i++) {
+            botones[i].setBounds(x, 320, 110, 35);
+            botones[i].setBackground(colores[i]);
+            botones[i].setForeground(texto);
+            botones[i].setFont(new Font("Segoe UI", Font.BOLD, 14));
+            botones[i].setFocusPainted(false);
+            botones[i].setBorderPainted(false);
+            botones[i].setCursor(new Cursor(Cursor.HAND_CURSOR));
+            panel.add(botones[i]);
+            x += 125;
+        }
+
+        // Campo y botón de búsqueda
+        JTextField txtBuscar = new JTextField();
+        JButton btnBuscar = new JButton("Buscar");
+        txtBuscar.setBounds(480, 40, 300, 30);
+        txtBuscar.setBackground(new Color(35, 35, 50));
+        txtBuscar.setForeground(texto);
+        txtBuscar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        txtBuscar.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        add(txtBuscar);
+
+        btnBuscar.setBounds(790, 40, 100, 30);
+        btnBuscar.setBackground(botonAzul);
+        btnBuscar.setForeground(texto);
+        btnBuscar.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        btnBuscar.setFocusPainted(false);
+        btnBuscar.setBorderPainted(false);
+        add(btnBuscar);
+
+        // Tabla
+        String[] columnas = {"ID", "Nombre", "Apellido", "Teléfono", "Correo", "Tipo"};
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+        JTable tabla = new JTable(modelo);
+        tabla.setBackground(new Color(25, 25, 40));
+        tabla.setForeground(texto);
+        tabla.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        tabla.setRowHeight(25);
+        tabla.setGridColor(new Color(70, 70, 90));
+        tabla.setSelectionBackground(new Color(45, 95, 255));
+        tabla.setSelectionForeground(Color.WHITE);
+
+        JScrollPane scroll = new JScrollPane(tabla);
+        scroll.setBounds(480, 90, 430, 430);
+        scroll.getViewport().setBackground(new Color(25, 25, 40));
+        add(scroll);
+
+        // Título
+        JLabel lblTitulo = new JLabel("Clientes");
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 22));
+        lblTitulo.setForeground(texto);
+        lblTitulo.setBounds(20, 5, 400, 30);
+        add(lblTitulo);
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new FrmClientes());
+    }
+}
