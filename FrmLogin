@@ -1,0 +1,86 @@
+package Views;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class FrmLogin extends JFrame {
+    public FrmLogin() {
+        setTitle("Inmobiliaria Universitaria");
+        setSize(400, 300);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(null);
+
+        Color fondo = new Color(18, 18, 30);
+        Color panel = new Color(30, 30, 46);
+        Color texto = new Color(230, 230, 230);
+        Color azul = new Color(52, 86, 255);
+
+        getContentPane().setBackground(fondo);
+
+        JLabel lblTitulo = new JLabel("Iniciar Sesión");
+        lblTitulo.setForeground(Color.WHITE);
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 22));
+        lblTitulo.setBounds(130, 30, 200, 30);
+        add(lblTitulo);
+
+        JLabel lblUsuario = crearLabel("Usuario:", texto);
+        lblUsuario.setBounds(60, 90, 100, 25);
+        add(lblUsuario);
+
+        JTextField txtUsuario = crearCampo(panel, texto);
+        txtUsuario.setBounds(150, 90, 180, 25);
+        add(txtUsuario);
+
+        JLabel lblContra = crearLabel("Contraseña:", texto);
+        lblContra.setBounds(60, 130, 100, 25);
+        add(lblContra);
+
+        JPasswordField txtContra = new JPasswordField();
+        txtContra.setBackground(panel);
+        txtContra.setForeground(texto);
+        txtContra.setCaretColor(texto);
+        txtContra.setBorder(BorderFactory.createLineBorder(new Color(70, 70, 90)));
+        txtContra.setBounds(150, 130, 180, 25);
+        add(txtContra);
+
+        JButton btnLogin = crearBoton("Ingresar", azul);
+        btnLogin.setBounds(100, 190, 100, 35);
+        add(btnLogin);
+
+        JButton btnRegistro = crearBoton("Registrarse", new Color(67, 160, 71));
+        btnRegistro.setBounds(210, 190, 120, 35);
+        add(btnRegistro);
+    }
+
+    private JLabel crearLabel(String texto, Color color) {
+        JLabel lbl = new JLabel(texto);
+        lbl.setForeground(color);
+        lbl.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        return lbl;
+    }
+
+    private JTextField crearCampo(Color fondo, Color texto) {
+        JTextField txt = new JTextField();
+        txt.setBackground(fondo);
+        txt.setForeground(texto);
+        txt.setCaretColor(texto);
+        txt.setBorder(BorderFactory.createLineBorder(new Color(70, 70, 90)));
+        return txt;
+    }
+
+    private JButton crearBoton(String texto, Color colorFondo) {
+        JButton btn = new JButton(texto);
+        btn.setBackground(colorFondo);
+        btn.setForeground(Color.WHITE);
+        btn.setFocusPainted(false);
+        btn.setBorderPainted(false);
+        btn.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        return btn;
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new FrmLogin().setVisible(true));
+    }
+}
