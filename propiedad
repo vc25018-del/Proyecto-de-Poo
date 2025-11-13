@@ -1,0 +1,39 @@
+package com.inmobiliaria.model;
+
+import java.math.BigDecimal;
+
+/**
+ * Modelo Propiedad
+ */
+public class Propiedad {
+    private String codigo; // identificador único
+    private String tipo; // casa, apartamento, local
+    private String direccion;
+    private double precio; // validar positivo
+    private String estado; // disponible, vendida, alquilada
+    private String propietarioId; // referencia a propietario (id)
+
+    public Propiedad() {}
+
+    // getters y setters (lowerCamelCase)
+    public String getCodigo() { return codigo; }
+    public void setCodigo(String codigo) { this.codigo = codigo; }
+
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
+
+    public String getDireccion() { return direccion; }
+    public void setDireccion(String direccion) { this.direccion = direccion; }
+
+    public double getPrecio() { return precio; }
+    public void setPrecio(double precio) {
+        if (precio < 0) throw new IllegalArgumentException("El precio debe ser positivo");
+        this.precio = precio;
+    }
+
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
+
+    public String getPropietarioId() { return propietarioId; }
+    public void setPropietarioId(String propietarioId) { this.propietarioId = propietarioId; }
+}
