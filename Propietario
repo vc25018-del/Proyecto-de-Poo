@@ -1,0 +1,101 @@
+package com.inmobiliaria.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Propietario {
+
+    private String id;                   // ID del propietario (generado o asignado)
+    private String nombre;               // Nombre del propietario
+    private String telefono;             // Teléfono de contacto
+    private String correo;               // Correo electrónico
+    private List<String> propiedades;    // Lista de IDs de propiedades asociadas
+
+    // --- Constructor vacío ---
+    public Propietario() {
+        this.propiedades = new ArrayList<>();
+    }
+
+    // --- Constructor con parámetros ---
+    public Propietario(String id, String nombre, String telefono, String correo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.propiedades = new ArrayList<>();
+    }
+
+    // --- Getters y Setters ---
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre no puede estar vacío.");
+        }
+        this.nombre = nombre;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        // Validación simple de formato telefónico
+        if (!telefono.matches("\\d{8,15}")) {
+            throw new IllegalArgumentException("El teléfono debe tener entre 8 y 15 dígitos numéricos.");
+        }
+        this.telefono = telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        // Validación simple de formato de correo electrónico
+        if (!correo.matches("^[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,}$")) {
+            throw new IllegalArgumentException("El correo electrónico no es válido.");
+        }
+        this.correo = correo;
+    }
+
+    public List<String> getPropiedades() {
+        return propiedades;
+    }
+
+    public void setPropiedades(List<String> propiedades) {
+        this.propiedades = propiedades;
+    }
+
+    // --- Métodos adicionales ---
+    public void agregarPropiedad(String idPropiedad) {
+        if (idPropiedad != null && !idPropiedad.isEmpty()) {
+            propiedades.add(idPropiedad);
+        }
+    }
+
+    public void eliminarPropiedad(String idPropiedad) {
+        propiedades.remove(idPropiedad);
+    }
+
+    @Override
+    public String toString() {
+        return "Propietario{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", correo='" + correo + '\'' +
+                ", propiedades=" + propiedades +
+                '}';
+    }
+}
